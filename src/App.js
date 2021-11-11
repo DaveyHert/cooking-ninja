@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 // Styles
 import "./App.css";
 
+// Components
+import Navbar from "./components/Navbar";
+
 // Routes
 import Home from "./pages/home/Home";
 import Create from "./pages/create/Create";
@@ -13,13 +16,7 @@ function App() {
   return (
     <div className='App'>
       <BrowserRouter>
-        <nav className='nav'>
-          <Link to='/'>Home</Link>
-          <Link to='/create'>Create</Link>
-          <Link to='/recipe'>Recipe</Link>
-          <Link to='/search'>Search</Link>
-        </nav>
-        <h1>Hi</h1>
+        <Navbar />
 
         <Routes>
           <Route exact path='/' element={<Home />} />
