@@ -56,7 +56,6 @@ function Create() {
             </button>
           </div>
         </label>
-<<<<<<< HEAD
         {ingredents && (
           <p>
             Current Ingredients:{" "}
@@ -65,8 +64,6 @@ function Create() {
             ))}
           </p>
         )}
-=======
->>>>>>> 4a7f48541e37fa34a8134ad5514716e46750f55e
         <label>
           <span>Method</span>
           <textarea
