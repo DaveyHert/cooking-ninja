@@ -4,7 +4,6 @@ import RecipeList from "../../components/RecipeList";
 
 export default function Home() {
   const { data, isLoading, error } = useFetch("http://localhost:3000/recipes");
-  console.log(data);
 
   return (
     <div className='home'>

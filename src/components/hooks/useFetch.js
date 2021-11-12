@@ -1,20 +1,34 @@
 import { useState, useEffect } from "react";
 
-function useFetch(url, method = "Get") {
+function useFetch(url, method = "GET") {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [options, setOptions] = useState(null);
 
+  // set Post request options
+  const postData = (recipe) => {
+    setOptions({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipe),
+    });
+  };
+
   useEffect(() => {
     //   initiate abort controller
     const controller = new AbortController();
 
-    const fetchData = async () => {
+    const fetchData = async (requestOptions) => {
       setIsLoading(true);
 
       try {
-        const res = await fetch(url, { signal: controller.signal });
+        const res = await fetch(url, {
+          ...requestOptions,
+          signal: controller.signal,
+        });
         // Check for fetch error
         if (!res.ok) throw new Error("Failed to fetch data");
         // Store data
@@ -32,15 +46,20 @@ function useFetch(url, method = "Get") {
       }
     };
 
-    fetchData();
+    if (method === "GET") {
+      fetchData();
+    }
+    if (method === "POST" && options) {
+      fetchData(options);
+    }
 
     // return ability to abort
     return () => {
       controller.abort();
     };
-  }, [url]);
+  }, [url, options]);
 
-  return { data, isLoading, error };
+  return { data, isLoading, error, postData };
 }
 
 export default useFetch;

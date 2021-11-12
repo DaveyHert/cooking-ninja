@@ -1,26 +1,43 @@
 import "./Create.css";
 import { useState, useRef } from "react";
+import useFetch from "../../components/hooks/useFetch";
+import { useNavigate } from "react-router";
+import { useEffect } from "react/cjs/react.development";
 
 function Create() {
   const [title, setTitle] = useState("");
   const [method, setMethod] = useState("");
   const [cookingTime, setCookingTime] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
-  const [ingredents, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const ingInputRef = useRef(null);
+  const navigator = useNavigate();
+
+  const { postData, data } = useFetch("http://localhost:3000/recipes", "POST");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const recipe = { title, method, cookingTime };
-    console.log(recipe);
+
+    postData({
+      title,
+      method,
+      ingredients,
+      cookingTime: cookingTime + " minutes",
+    });
   };
 
-  console.log(ingInputRef);
+  // redirect user if data is successsfully updated
+  useEffect(() => {
+    if (data) {
+      navigator("/");
+    }
+  }, [data]);
+
   const handleAdd = (e) => {
     e.preventDefault();
     const ing = newIngredient.trim();
 
-    if (ing && !ingredents.includes(ing)) {
+    if (ing && !ingredients.includes(ing)) {
       setIngredients((prevIng) => [...prevIng, ing]);
     }
     setNewIngredient("");
@@ -56,10 +73,10 @@ function Create() {
             </button>
           </div>
         </label>
-        {ingredents && (
+        {ingredients && (
           <p>
             Current Ingredients:{" "}
-            {ingredents.map((ing) => (
+            {ingredients.map((ing) => (
               <em key={ing}>{ing}, </em>
             ))}
           </p>
