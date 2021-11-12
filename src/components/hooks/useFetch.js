@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 
+<<<<<<< HEAD
 function useFetch(url, method = "Get") {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [options, setOptions] = useState(null);
+=======
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+>>>>>>> 4a7f48541e37fa34a8134ad5514716e46750f55e
 
   useEffect(() => {
     //   initiate abort controller
