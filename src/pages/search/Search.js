@@ -2,7 +2,6 @@ import "./Search.css";
 import { useLocation } from "react-router";
 import useFetch from "../../components/hooks/useFetch";
 import RecipeList from "../../components/RecipeList";
-import { useEffect, useState } from "react/cjs/react.development";
 
 export default function Search() {
   const queryString = useLocation().search;

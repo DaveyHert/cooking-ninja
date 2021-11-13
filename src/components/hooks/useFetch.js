@@ -57,7 +57,7 @@ function useFetch(url, method = "GET") {
     return () => {
       controller.abort();
     };
-  }, [url, options]);
+  }, [url, options, method]);
 
   return { data, isLoading, error, postData };
 }

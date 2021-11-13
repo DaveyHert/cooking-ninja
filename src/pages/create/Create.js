@@ -31,7 +31,7 @@ function Create() {
     if (data) {
       navigator("/");
     }
-  }, [data]);
+  }, [data, navigator]);
 
   const handleAdd = (e) => {
     e.preventDefault();
