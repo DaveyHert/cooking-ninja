@@ -7,7 +7,8 @@ function themeReducer(state, action) {
   switch (action.type) {
     case "CHANGE_COLOR":
       return { ...state, color: action.payload };
-
+    case "CHANGE_MODE":
+      return { ...state, nightMode: action.payload };
     default:
       return state;
   }
@@ -17,6 +18,7 @@ function themeReducer(state, action) {
 export function ThemeProvider({ children }) {
   const initialState = {
     color: "#58249c",
+    nightMode: false,
   };
 
   // initiate reducer
@@ -25,9 +27,13 @@ export function ThemeProvider({ children }) {
   //   dispatch function to manipulate state in reducer function
   const changeColor = (newCol) =>
     dispatch({ type: "CHANGE_COLOR", payload: newCol });
-
+  const changeMode = (mode) => {
+    console.log(state.nightMode);
+    dispatch({ type: "CHANGE_MODE", payload: mode });
+    console.log(state.nightMode);
+  };
   return (
-    <ThemeContext.Provider value={{ ...state, changeColor }}>
+    <ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
       {children}
     </ThemeContext.Provider>
   );

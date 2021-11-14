@@ -45,3 +45,18 @@
   background: #444;
   color: #fff;
 }
+
+.recipe.dark-mode {
+  background: #555;
+}
+
+.recipe.dark-mode h1,
+.recipe.dark-mode h2,
+.recipe.dark-mode h4,
+.recipe.dark-mode .page-title {
+  color: #fff;
+}
+.recipe.dark-mode li,
+.recipe.dark-mode p {
+  color: rgb(235, 235, 235);
+}

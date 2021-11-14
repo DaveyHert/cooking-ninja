@@ -47,3 +47,18 @@
   border-radius: 4px;
   margin: 20px auto 0;
 }
+
+.recipe-list .card.dark-mode {
+  background-color: #555;
+}
+
+.recipe-list .card.dark-mode h3,
+.recipe-list .card.dark-mode h4,
+.recipe-list .card.dark-mode div,
+.recipe-list .card.dark-mode .page-title {
+  color: #fff;
+}
+.recipe-list .card.dark-mode li,
+.recipe-list .card.dark-mode p {
+  color: rgb(235, 235, 235);
+}

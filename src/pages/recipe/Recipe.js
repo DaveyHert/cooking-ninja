@@ -1,10 +1,12 @@
 import "./Recipe.css";
 import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../components/hooks/useFetch";
+import useTheme from "../../components/hooks/useTheme";
 
 export default function Recipe() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { nightMode } = useTheme();
 
   const goBack = () => navigate(-1);
 
@@ -19,7 +21,7 @@ export default function Recipe() {
       {error && <p className='error'>{error}</p>}
       {isLoading && <p className='loading'>Loading...</p>}
       {recipe && (
-        <div className='recipe'>
+        <div className={`recipe ${nightMode ? "dark-mode" : ""}`}>
           <button className='go-back' onClick={goBack}>
             Back
           </button>
