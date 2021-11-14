@@ -74,6 +74,17 @@
       "ingredients": [],
       "cookingTime": "5 minutes",
       "id": "_fF35nO"
+    },
+    {
+      "title": "Solomon",
+      "method": "Just cook",
+      "ingredients": [
+        "pepper",
+        "salt",
+        "onion"
+      ],
+      "cookingTime": "10 minutes",
+      "id": "6Yo5VfS"
     }
   ]
 }
