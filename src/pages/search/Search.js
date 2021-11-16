@@ -15,17 +15,32 @@ export default function Search() {
 
   useEffect(() => {
     try {
+      setIsLoading(true);
       projectFirestore
         .collection("recipes")
-        .where("title", "==", `${query}`)
         .get()
         .then((snapshot) => {
-          console.log(snapshot);
+          let allDocs = [];
+          //get all docs and store in array above
+          snapshot.docs.forEach((doc) => {
+            allDocs.push({ id: doc.id, ...doc.data() });
+          });
+          // filter doc for query
+          const result = allDocs.filter((doc) => {
+            let t = doc.title.toLocaleLowerCase();
+            let q = query.toLocaleLowerCase();
+            if (t.includes(q)) {
+              return doc;
+            }
+          });
+          setRecipes(result);
+          setIsLoading(false);
         });
     } catch (err) {
+      setIsLoading(false);
       setError(err.message);
     }
-  }, []);
+  }, [query, recipes]);
   return (
     <div>
       <h2 className='page-title'>Recipes including "{query}"</h2>

@@ -22,7 +22,7 @@ function RecipeList({ recipes }) {
           <div>{recipe.method.substring(0, 100)}...</div>
           <Link to={`/recipes/${recipe.id}`}>Cook This</Link>
           <div className='delete' onClick={() => deleteRecipe(recipe.id)}>
-            <i class='far fa-trash-alt'></i>
+            <i className='far fa-trash-alt'></i>
           </div>
         </div>
       ))}
