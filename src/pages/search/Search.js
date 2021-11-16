@@ -1,19 +1,31 @@
 import "./Search.css";
 import { useLocation } from "react-router";
-import useFetch from "../../components/hooks/useFetch";
 import RecipeList from "../../components/RecipeList";
+import { useEffect, useState } from "react";
+import { projectFirestore } from "../../firebase/config";
 
 export default function Search() {
   const queryString = useLocation().search;
   const queryParams = new URLSearchParams(queryString);
   const query = queryParams.get("q");
 
-  const {
-    data: recipes,
-    isLoading,
-    error,
-  } = useFetch(`http://localhost:3000/recipes?q=${query}`);
+  const [recipes, setRecipes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    try {
+      projectFirestore
+        .collection("recipes")
+        .where("title", "==", `${query}`)
+        .get()
+        .then((snapshot) => {
+          console.log(snapshot);
+        });
+    } catch (err) {
+      setError(err.message);
+    }
+  }, []);
   return (
     <div>
       <h2 className='page-title'>Recipes including "{query}"</h2>
