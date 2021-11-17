@@ -62,3 +62,20 @@
 .recipe-list .card.dark-mode p {
   color: rgb(235, 235, 235);
 }
+
+.recipe-list .delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  filter: invert(60%);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.recipe-list .delete:hover {
+  color: #f34343;
+  filter: none;
+}
+
+.recipe-list.dark-mode .delete {
+  color: #fff;
+}

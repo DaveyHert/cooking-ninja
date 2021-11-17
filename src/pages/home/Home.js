@@ -10,27 +10,26 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true);
 
-    projectFirestore
-      .collection("recipes")
-      .get()
-      .then((snapshot) => {
-        let recipes = [];
+    const unsub = projectFirestore.collection("recipes").onSnapshot(
+      (snapshot) => {
         if (snapshot.empty) {
-          setIsLoading(false);
           setError("No recipes found");
         } else {
-          snapshot.docs.forEach((item) =>
-            recipes.push({ id: item.id, ...item.data() })
-          );
-
+          let recipes = [];
+          snapshot.docs.forEach((doc) => {
+            recipes.push({ id: doc.id, ...doc.data() });
+          });
           setIsLoading(false);
           setData(recipes);
         }
-      })
-      .catch((err) => {
+      },
+      (err) => {
         setError(err.message);
-        setIsLoading(false);
-      });
+      }
+    );
+
+    // Unsub from component in case it is not mounted and tries to update
+    return () => unsub();
   }, []);
 
   return (

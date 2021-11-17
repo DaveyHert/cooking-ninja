@@ -57,11 +57,12 @@
 }
 
 .recipe.dark-mode .delete {
-  color: #fff;
+  color: rgb(204, 204, 204);
+  filter: none;
 }
 .recipe .delete:hover {
-  background: #444;
   color: #f34343;
+  filter: none;
 }
 
 .recipe.dark-mode {
