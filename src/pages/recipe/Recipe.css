@@ -45,6 +45,24 @@
   background: #444;
   color: #fff;
 }
+.recipe .delete {
+  position: absolute;
+  top: 1rem;
+  right: 3rem;
+  color: #222;
+  padding: 5px;
+  font-size: 1.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.recipe.dark-mode .delete {
+  color: #fff;
+}
+.recipe .delete:hover {
+  background: #444;
+  color: #f34343;
+}
 
 .recipe.dark-mode {
   background: #555;

@@ -30,7 +30,6 @@ export function ThemeProvider({ children }) {
   const changeMode = (mode) => {
     console.log(state.nightMode);
     dispatch({ type: "CHANGE_MODE", payload: mode });
-    console.log(state.nightMode);
   };
   return (
     <ThemeContext.Provider value={{ ...state, changeColor, changeMode }}>
